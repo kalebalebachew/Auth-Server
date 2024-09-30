@@ -2,10 +2,10 @@
   "name": "auth-server",
   "version": "1.0.0",
   "description": "an auth server for personal use",
-  "main": "src/api/index.js",
+  "main": "public/api/index.js",
   "scripts": {
     "dev": "nodemon src/app.ts",
-    "start": "node src/api/index.js", 
+    "start": "node public/api/index.js", 
     "build": "tsc --outDir public" 
   },
   "author": "kaleb",
