@@ -11,7 +11,6 @@
   "author": "kaleb",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^5.0.0",
     "@vercel/postgres": "^0.10.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
@@ -23,6 +22,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.7.4",
     "drizzle-kit": "^0.24.2",
