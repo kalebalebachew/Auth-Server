@@ -1,5 +1,5 @@
 {
-  "id": "d8b8549c-d647-44df-9b3d-20e676e958ec",
+  "id": "cf818591-b835-467f-a14b-2f3f9ca7cf1b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -29,6 +29,13 @@
         "password": {
           "name": "password",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "role",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
         },

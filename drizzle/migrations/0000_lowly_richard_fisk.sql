@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"username" text NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
+	"role" "role" NOT NULL,
 	"createdAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
