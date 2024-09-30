@@ -10,8 +10,8 @@ app.get('/',(req: Request,res:Response)=>{
 
 })
 
-// app.listen(port, () =>{
-//     console.log(`Auth server running on ${port}`);
-// })
+app.listen(port, () =>{
+    console.log(`Auth server running on ${port}`);
+})
 
 export default app
