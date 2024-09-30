@@ -5,9 +5,9 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-      "outDir": "./public", 
+    "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["src/**/*.ts", "drizzle.config.ts"],
+  "include": ["src/**/*.ts", "src/drizzle.config.ts"],
   "exclude": ["node_modules"]
 }
