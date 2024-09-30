@@ -9,7 +9,7 @@ import {
   pgEnum,
 } from "drizzle-orm/pg-core";
 
-const roleEnum = pgEnum("role", ["admin", "user", "guest"]);
+const roles = pgEnum("role", ["admin", "user", "guest"]);
 
 export const UsersTable = pgTable(
   "users",
@@ -18,7 +18,7 @@ export const UsersTable = pgTable(
     username: text("username").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
-    role: roleEnum("role").notNull(),
+    role: roles("role").notNull(),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
   },
   (users) => {
