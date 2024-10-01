@@ -3,7 +3,7 @@ import { sql } from "@vercel/postgres";
 import {
   pgTable,
   serial,
-  text,
+  varchar,
   timestamp,
   uniqueIndex,
   pgEnum,
@@ -15,10 +15,10 @@ export const UsersTable = pgTable(
   "users",
   {
     id: serial("id").primaryKey(),
-    username: text("username").notNull(),
-    email: text("email").notNull(),
-    password: text("password").notNull(),
-    role: roles("role").notNull(),
+    username: varchar("username").notNull(),
+    email: varchar("email").notNull(),
+    password: varchar("password").notNull(),
+    role: varchar("role").notNull(),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
   },
   (users) => {

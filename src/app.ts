@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 // import path from 'path';
 import * as dotenv from "dotenv";
-
-import user from "./routes/user-routes";
 dotenv.config();
+import user from "./routes/user-routes";
+
 const app = express();
 const port = 3003;
 app.use(express.json());
