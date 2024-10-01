@@ -10,21 +10,21 @@ export const loginUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     const [user] = await db
       .select({
         id: UsersTable.id,
-        username: UsersTable.username,
+        email: UsersTable.email,
         password: UsersTable.password,
         role: UsersTable.role,
-      })
-      .from(UsersTable)
-      .where(eq(UsersTable.username, username));
+      }) 
+      .from(UsersTable) 
+      .where(eq(UsersTable.email, email));
 
     if (!user) {
-      res.status(404).json({ msg: "whoopsie no user with that username bro" });
+      res.status(404).json({ msg: "whoopsie no user with that email bro" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
