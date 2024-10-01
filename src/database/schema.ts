@@ -3,22 +3,23 @@ import { sql } from "@vercel/postgres";
 import {
   pgTable,
   serial,
-  varchar,
+  text,
   timestamp,
   uniqueIndex,
   pgEnum,
 } from "drizzle-orm/pg-core";
 
-const roles = pgEnum("role", ["admin", "user", "guest"]);
+export const roles = pgEnum("role", ["admin", "user", "guest"]);
 
+export type Role = "admin" | "user" | "guest";
 export const UsersTable = pgTable(
   "users",
   {
     id: serial("id").primaryKey(),
-    username: varchar("username").notNull(),
-    email: varchar("email").notNull(),
-    password: varchar("password").notNull(),
-    role: varchar("role").notNull(),
+    username: text("username").notNull(),
+    email: text("email").notNull(),
+    password: text("password").notNull(),
+    role: roles("role").notNull(),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
   },
   (users) => {

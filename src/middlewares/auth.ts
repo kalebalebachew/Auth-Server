@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
+import { User } from "../interfaces/user";
 
-interface AuthenticatedRequest extends Request {
-  user?: JwtPayload;
+export interface AuthenticatedRequest extends Request {
+  user?: User; 
 }
-interface JwtPayload {
-  id: string;
-  role: string;
-}
+// interface JwtPayload {
+//   id: string;
+//   role: string;
+// }
 
 export const auth = (
   req: AuthenticatedRequest,
@@ -25,7 +26,7 @@ export const auth = (
       return res.status(500).json({ msg: "JWT token not configured" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_TOKEN) as JwtPayload;
+    const decoded = jwt.verify(token, process.env.JWT_TOKEN) as User;
 
     req.user = decoded;
 
