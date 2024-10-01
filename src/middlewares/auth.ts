@@ -1,14 +1,15 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import { User } from "../interfaces/user";
+import { User } from "../interfaces/user"; // Adjust as necessary
 
 export interface AuthenticatedRequest extends Request {
   user?: User; 
 }
-// interface JwtPayload {
-//   id: string;
-//   role: string;
-// }
+
+interface JwtPayload {
+  id: User["id"]; 
+  role: User["role"]; 
+}
 
 export const auth = (
   req: AuthenticatedRequest,
@@ -18,20 +19,31 @@ export const auth = (
   const token = req.header("Authorization")?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ msg: "No token, authorization denied" });
+    res.status(401).json({ msg: "No token, authorization denied" });
+    return; 
+  }
+
+  if (!process.env.JWT_SECRET) {
+    res.status(500).json({ msg: "JWT secret not configured" });
+    return; 
   }
 
   try {
-    if (!process.env.JWT_TOKEN) {
-      return res.status(500).json({ msg: "JWT token not configured" });
-    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET) as JwtPayload;
 
-    const decoded = jwt.verify(token, process.env.JWT_TOKEN) as User;
-
-    req.user = decoded;
+    req.user = {
+      id: decoded.id,
+      role: decoded.role,
+      username: '',
+      email: '',    
+      password: '', 
+      createdAt: new Date() 
+    };
 
     next();
   } catch (err) {
+    console.error("Token verification failed:", err);
     res.status(401).json({ msg: "Token is not valid" });
+    return; 
   }
 };
