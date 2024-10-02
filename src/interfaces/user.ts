@@ -1,4 +1,4 @@
-import { UsersTable, Role } from '../database/schema'; // Adjust the path as necessary
+import { UsersTable, Role } from '../database/schema'; 
 
 export type User = {
   id: number;
